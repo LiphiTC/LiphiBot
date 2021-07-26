@@ -1,0 +1,70 @@
+{
+  "CurrentLevel": {
+    "Id": "59919444",
+    "Author": "Zylenox",
+    "Name": "Peaceful",
+    "Difficulty": "Insane",
+    "Stars": 0,
+    "Featured": false,
+    "Epic": false,
+    "SongName": "dont do drugs men...",
+    "SongAuthor": "wolffy"
+  },
+  "Queue": [
+    {
+      "Id": "71180296",
+      "Author": "adike228nat",
+      "Name": "Prosto",
+      "Difficulty": "Normal",
+      "Stars": 0,
+      "Featured": false,
+      "Epic": false,
+      "SongName": "Stereo Madness",
+      "SongAuthor": "ForeverBound"
+    },
+    {
+      "Id": "71450147",
+      "Author": "Vexes7",
+      "Name": "Vitality Rush",
+      "Difficulty": "Harder",
+      "Stars": 6,
+      "Featured": true,
+      "Epic": false,
+      "SongName": "Geoxor - Aether",
+      "SongAuthor": "Geoxor"
+    },
+    {
+      "Id": "59919444",
+      "Author": "Zylenox",
+      "Name": "Peaceful",
+      "Difficulty": "Insane",
+      "Stars": 0,
+      "Featured": false,
+      "Epic": false,
+      "SongName": "dont do drugs men...",
+      "SongAuthor": "wolffy"
+    },
+    {
+      "Id": "71227958",
+      "Author": "kochimoning",
+      "Name": "fake",
+      "Difficulty": "Harder",
+      "Stars": 0,
+      "Featured": false,
+      "Epic": false,
+      "SongName": "VGMusicRox - Frantic Factory (",
+      "SongAuthor": "Viproxi"
+    },
+    {
+      "Id": "71781349",
+      "Author": "mishaochko",
+      "Name": "dolfhy challenge",
+      "Difficulty": "Harder",
+      "Stars": 0,
+      "Featured": false,
+      "Epic": false,
+      "SongName": "---Steel Terror---",
+      "SongAuthor": "Acid-Notation"
+    }
+  ]
+}
