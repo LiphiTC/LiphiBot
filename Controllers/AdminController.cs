@@ -54,5 +54,28 @@ namespace LiphiBot2.Controllers
             _helper.EditObject<Dictionary<string, string>>("SmilesSpamer", "SpamOn", s);
             SendAnswer("готово WoahBlanket");
         }
+        private static string _timerName;
+        private static DateTime _timerStart;
+        [StartWith("!starttimer")]
+        public void StartTimer()
+        {
+            string name = Message.Message.Substring(11);
+            if(_timerStart != null) {
+                SendAnswer("Уже идёт таймер YEP");
+                return;
+            }
+            _timerName = name;
+            _timerStart = DateTime.Now;
+            SendAnswer("Таймер пошёл PETTHEPEPEGA");
+        }
+        [StartWith("!stoptimer")]
+        public void StopTimer()
+        {
+            if(_timerStart == null) {
+                SendAnswer("Нету таймера YEP");
+                return;
+            }
+            SendAnswer("Таймер отсановлен PETTHEPEPEGA на " + _timerName + " ушло " + (DateTime.Now - _timerStart) + " PETTHEPEPEGA");
+        }
     }
 }

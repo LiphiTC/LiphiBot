@@ -77,6 +77,24 @@ namespace LiphiBot2.Controllers
             }
             SendAnswer("https://gdbrowser.com WoahBlanket", m.UserName);
         }
+        public static Dictionary<string, string> smileSpam { get; set; } = new();
+
+        [CoolDown(100)]
+        public void Spam()
+        {
+            if (smileSpam.Count == 0)
+            {
+                smileSpam = _helper.GetObject<Dictionary<string, string>>("SmilesSpamer", "SpamOn");
+                if (smileSpam is null)
+                    return;
+            }
+            var s = smileSpam.FirstOrDefault(x => x.Key == Message.Message);
+
+            if (!s.Equals(default(KeyValuePair<string, string>)))
+                Send(s.Value);
+
+
+        }
 
         [StartWith("!bttv")]
         [CoolDown(20)]

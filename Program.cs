@@ -14,7 +14,7 @@ namespace LiphiBot2
             var client = new TwitcherClient()
             .UseTwitchLibProvider(new TwitchLib.Client.Models.ConnectionCredentials("LiphiTC", ""))   
             .JoinChannels(new string[] {
-                //"zakvielchannel",
+                "zakvielchannel",
                 "LiphiTC",
                 "Safrit22"
             })
