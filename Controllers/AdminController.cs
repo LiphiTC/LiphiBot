@@ -50,7 +50,7 @@ namespace LiphiBot2.Controllers
             }
 
             s.Add(s1 + ' ' + s2, s1 + ' ' + s2);
-            PublicController.smileSpam.Add(s1 + ' ' + s2, s1 + ' ' + s2);
+            SafritController.smileSpam.Add(s1 + ' ' + s2, s1 + ' ' + s2);
             _helper.EditObject<Dictionary<string, string>>("SmilesSpamer", "SpamOn", s);
             SendAnswer("готово WoahBlanket");
         }
@@ -60,7 +60,7 @@ namespace LiphiBot2.Controllers
         public void StartTimer()
         {
             string name = Message.Message.Substring(11);
-            if(_timerStart != null) {
+            if(_timerStart != default(DateTime)) {
                 SendAnswer("Уже идёт таймер YEP");
                 return;
             }
@@ -76,6 +76,7 @@ namespace LiphiBot2.Controllers
                 return;
             }
             SendAnswer("Таймер отсановлен PETTHEPEPEGA на " + _timerName + " ушло " + (DateTime.Now - _timerStart) + " PETTHEPEPEGA");
+            _timerStart = default;
         }
     }
 }
