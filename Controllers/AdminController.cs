@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Twitcher;
+using TwitchLib.Api;
+using TwitchLib.Api.Helix.Models.ChannelPoints;
 using System.Linq;
 using Twitcher.Controllers;
 using Twitcher.Controllers.Attributes;
 using Twitcher.Controllers.JsonHelper;
 using System.Threading;
 using System.Threading.Tasks;
+using TwitchLib.Api.Helix.Models.ChannelPoints.CreateCustomReward;
+using LiphiBot2.Models;
+using Twitcher.Controllers.APIHelper;
 
 namespace LiphiBot2.Controllers
 {
@@ -14,25 +19,12 @@ namespace LiphiBot2.Controllers
     [User("LiphiTC")]
     public class AdminController : Controller
     {
-        private bool _isSpam = false;
         private readonly JsonHelper _helper;
         public AdminController(JsonHelper helper)
         {
             _helper = helper;
         }
-        [Same("WoahBlanket s")]
-        public async void Spam()
-        {
-            _isSpam = true;
 
-            while (_isSpam)
-            {
-                Random rand = new Random();
-                await Task.Delay(rand.Next(540000, 660000));
-                //await Task.Delay(1000);
-                Send("WoahSadBlanket");
-            }
-        }
 
         [StartWith("!addcomb")]
         public void AddComb()
@@ -60,7 +52,8 @@ namespace LiphiBot2.Controllers
         public void StartTimer()
         {
             string name = Message.Message.Substring(11);
-            if(_timerStart != default(DateTime)) {
+            if (_timerStart != default(DateTime))
+            {
                 SendAnswer("Уже идёт таймер YEP");
                 return;
             }
@@ -71,12 +64,107 @@ namespace LiphiBot2.Controllers
         [StartWith("!stoptimer")]
         public void StopTimer()
         {
-            if(_timerStart == null) {
+            if (_timerStart == null)
+            {
                 SendAnswer("Нету таймера YEP");
                 return;
             }
             SendAnswer("Таймер отсановлен PETTHEPEPEGA на " + _timerName + " ушло " + (DateTime.Now - _timerStart) + " PETTHEPEPEGA");
             _timerStart = default;
         }
+
+        [StartWith("!registerreward")]
+        public async void RegisterReward()
+        {
+            string[] splited = UnionString(Message.Message.Split(" "));
+            string asToken = "MAIN_REWARD";
+            CreateCustomRewardsRequest rewardsRequest = new();
+            for (int i = 0; i < splited.Length; i++)
+            {
+                switch (splited[i])
+                {
+                    case "as":
+                        if (i + 1 != splited.Length)
+                            asToken = splited[i + 1];
+                        break;
+                    case "cost":
+                        int cost;
+                        if (i + 1 != splited.Length)
+                        {
+                            if (int.TryParse(splited[i + 1], out cost))
+                            {
+                                rewardsRequest.Cost = cost;
+                                break;
+                            }
+                            SendAnswer("maxPreStream должно быть числом PETTHEPEPEGA");
+                            return;
+                        }
+                        break;
+                    case "maxPreStream":
+                        int maxPreStreamCount;
+                        if (i + 1 != splited.Length)
+                        {
+                            if (int.TryParse(splited[i + 1], out maxPreStreamCount))
+                            {
+                                rewardsRequest.IsMaxPerStreamEnabled = true;
+                                rewardsRequest.MaxPerStream = maxPreStreamCount;
+                                break;
+                            }
+                            SendAnswer("maxPreStream должно быть числом PETTHEPEPEGA");
+                            return;
+                        }
+                        break;
+                    case "name":
+                        if (i + 1 != splited.Length)
+                            rewardsRequest.Title = splited[i + 1];
+                        break;
+                }
+            }
+            TokenInfo apiToken = Program.Tokens.FirstOrDefault(x => x.TokenPurpose == asToken);
+            if (apiToken == null)
+            {
+                SendAnswer($"Не найден токен {asToken} PETTHEPEPEGA");
+                return;
+            }
+            TwitchAPI api = new TwitchAPI();
+            api.Settings.AccessToken = apiToken.Token;
+            api.Settings.ClientId = apiToken.ClientID;
+
+            var g = new User(api, apiToken.UserName, CreateType.ByUserName).UserID.ToString();
+            ;
+            var m = await api.Helix.ChannelPoints.CreateCustomRewards(g.ToString(), rewardsRequest);
+            ;
+        }
+
+        private string[] UnionString(string[] input)
+        {
+            bool unionMode = false;
+            List<string> result = new();
+            string unionedString = "";
+            foreach (string s in input)
+            {
+                if (unionMode)
+                {
+                    unionedString += (' ' + s);
+                    if (unionedString.Last() == '\"')
+                    {
+                        unionedString = unionedString[..^1];
+                        result.Add(unionedString);
+                        unionMode = false;
+                    }
+                    continue;
+                }
+                if (s[0] == '\"')
+                {
+                    unionMode = true;
+                    unionedString = s.Substring(1);
+                    continue;
+                }
+                result.Add(s);
+            }
+            return result.ToArray();
+        }
+
+
     }
 }
