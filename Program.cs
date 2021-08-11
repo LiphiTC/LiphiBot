@@ -22,7 +22,7 @@ namespace LiphiBot2
             .JoinChannel("ZakvielChannel")
             .JoinChannels(new string[] {
                 "LiphiTC",
-                "Safrit22",
+                //"Safrit22",
                 "33kk",
                 "WoahBlanketBot"
             })

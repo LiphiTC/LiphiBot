@@ -1,0 +1,22 @@
+{
+  "Rules": [
+    {
+      "ID": "2.1",
+      "MuteTime": "5m",
+      "ShowToUser": true,
+      "RuleText": "2.1 Спам и тем же сообщением в течение минуты"
+    },
+    {
+      "ID": "2.2",
+      "MuteTime": "5m",
+      "ShowToUser": true,
+      "RuleText": "2.2 проявление агрессии"
+    },
+    {
+      "ID": "2.3",
+      "MuteTime": "5m",
+      "ShowToUser": true,
+      "RuleText": "2.3 вызывающее"
+    }
+  ]
+}
