@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace MuteBot
 {
     [Channel("safrit22")]
-    [Channel("liphitc")]
-    //[Mod]
     [User("LiphiTC")]
+    [User("Safrit22")]
+    [User("akira_kitamura_qq")]
+    [User("l_abrael_i")]
+    [User("un1cornpr0")]
+    [User("woahblanketbot")]
     public class ModController : Controller
     {
         private readonly APIHelper _api;
@@ -51,7 +54,8 @@ namespace MuteBot
         public void Paja(User user)
         {
             string[] splited = Message.Message.Split(' ');
-            if(splited.Length < 3) {   
+            if (splited.Length < 3)
+            {
                 SendAnswer("<Пользователь> <Приавило> WoahBlanket");
                 return;
             }
