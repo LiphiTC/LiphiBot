@@ -15,6 +15,7 @@ using Twitcher.Controllers.APIHelper;
 namespace LiphiBot2.Controllers
 {
     [Channel("Safrit22")]
+    [Channel("33kk")]
     [User("any")]
     public class SafritController : Controller
     {
@@ -65,7 +66,9 @@ namespace LiphiBot2.Controllers
 
         [StartWith("!туалет")]
         [CoolDown(30)]
-        public void Tyalet() => SendAnswer("YEP 👉 https://i.nuuls.com/xaCQl.png");
+        public void Tyalet()  {
+            SendAnswer("YEP 👉 https://i.nuuls.com/xaCQl.png");
+        } 
 
         [StartWith("!gdbrowser")]
         public void GDBrowser(User m)
@@ -107,6 +110,23 @@ namespace LiphiBot2.Controllers
             }
             SendAnswer("https://betterttv.com WoahBlanket", m.UserName);
         }
+        [StartWith("!асафритвчате", IsFullWord = true)]
+        [CoolDown(20)]
+        public async void YEP(User u)
+        {
+            u = u == null ? _api.User : u;
+            var l = await _api.Channel.GetUsersAsync();
+            bool isSafrit = l.Any(x => x.UserName == "safrit22");
+            if (isSafrit)
+            {
+                SendAnswer("YEP", u.UserName);
+            }
+            else
+            {
+                SendAnswer("NOPE", u.UserName);
+
+            }
+        }
         [StartWith("!7tv")]
         [CoolDown(20)]
         public void Seventv(User m)
@@ -131,7 +151,7 @@ namespace LiphiBot2.Controllers
         }
 
         [StartWith("!addlevel")]
-        [CoolDown(120)]
+        [CoolDown(40)]
         public async void AddLevel(int? id)
         {
             if (id == null)
@@ -255,6 +275,28 @@ namespace LiphiBot2.Controllers
         {
             var chatters = await _api.Channel.GetUsersAsync();
             SendAnswer("WoahBlanket 👉 " + chatters.Count);
+        }
+
+        [StartWith("!дела")]
+        public void Server2(User u) {
+            u = u == null ? _api.User : u;
+            SendAnswer("https://i.imgur.com/eUfNRNA.png YEP", u.UserName);
+        }
+
+         [StartWith("!янаместе")]
+        public void IaNaMeste(User u) {
+            u = u == null ? _api.User : u;
+            SendAnswer("https://i.kkx.one/t8iste5i.png YEP ", u.UserName);
+        }
+        [StartWith("!розыск")]
+        public void D(User u) {
+            u = u == null ? _api.User : u;
+            SendAnswer("https://i.kkx.one/60vylrtv.png Нужно поймать суку D:  ", u.UserName);
+        }
+        [StartWith("!дрочу")]
+        public void Cum(User u) {
+            u = u == null ? _api.User : u;
+            SendAnswer("https://i.kkx.one/hlfsnpcm.png PETTHEPEPEGA", u.UserName);
         }
 
     }

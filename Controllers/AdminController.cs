@@ -17,14 +17,16 @@ namespace LiphiBot2.Controllers
 {
     [Channel("any")]
     [User("LiphiTC")]
+        [User("LiphiTheCat")]
     public class AdminController : Controller
     {
         private readonly JsonHelper _helper;
-        public AdminController(JsonHelper helper)
+        private readonly APIHelper _api;
+        public AdminController(JsonHelper helper, APIHelper api)
         {
             _helper = helper;
+            _api = api;
         }
-
 
         [StartWith("!addcomb")]
         public void AddComb()
@@ -45,6 +47,14 @@ namespace LiphiBot2.Controllers
             SafritController.smileSpam.Add(s1 + ' ' + s2, s1 + ' ' + s2);
             _helper.EditObject<Dictionary<string, string>>("SmilesSpamer", "SpamOn", s);
             SendAnswer("готово WoahBlanket");
+        }
+        [CoolDown(50)]
+        [StartWith("!чатеры")]
+        public async void Chatter()
+        {
+            var usersNotParsed = await _api.API.Undocumented.GetChattersAsync(_api.Channel.Broadcaster.UserName);
+            var chatters = await _api.Channel.GetUsersAsync();
+            SendAnswer("WoahBlanket 👉 " + chatters.Count);
         }
         private static string _timerName;
         private static DateTime _timerStart;

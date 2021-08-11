@@ -1,70 +1,37 @@
 {
   "CurrentLevel": {
-    "Id": "59919444",
-    "Author": "Zylenox",
-    "Name": "Peaceful",
-    "Difficulty": "Insane",
-    "Stars": 0,
-    "Featured": false,
-    "Epic": false,
-    "SongName": "dont do drugs men...",
-    "SongAuthor": "wolffy"
+    "Id": "60679881",
+    "Author": "Unzor",
+    "Name": "Moonlight",
+    "Difficulty": "Hard",
+    "Stars": 5,
+    "Featured": true,
+    "Epic": true,
+    "SongName": "cloudfield - Fantasy (ft. Reichuu)",
+    "SongAuthor": "cloudfield"
   },
   "Queue": [
     {
-      "Id": "71180296",
-      "Author": "adike228nat",
-      "Name": "Prosto",
-      "Difficulty": "Normal",
+      "Id": "72399987",
+      "Author": "Dimasik2007gg",
+      "Name": "MenDozaV ",
+      "Difficulty": "Hard",
       "Stars": 0,
       "Featured": false,
       "Epic": false,
-      "SongName": "Stereo Madness",
-      "SongAuthor": "ForeverBound"
+      "SongName": "2.2 Will Never Come Out",
+      "SongAuthor": "decodyofficial"
     },
     {
-      "Id": "71450147",
-      "Author": "Vexes7",
-      "Name": "Vitality Rush",
-      "Difficulty": "Harder",
-      "Stars": 6,
-      "Featured": true,
-      "Epic": false,
-      "SongName": "Geoxor - Aether",
-      "SongAuthor": "Geoxor"
-    },
-    {
-      "Id": "59919444",
-      "Author": "Zylenox",
-      "Name": "Peaceful",
-      "Difficulty": "Insane",
-      "Stars": 0,
-      "Featured": false,
-      "Epic": false,
-      "SongName": "dont do drugs men...",
-      "SongAuthor": "wolffy"
-    },
-    {
-      "Id": "71227958",
-      "Author": "kochimoning",
-      "Name": "fake",
+      "Id": "72405842",
+      "Author": "TheYarik",
+      "Name": "collab all lvl",
       "Difficulty": "Harder",
       "Stars": 0,
       "Featured": false,
       "Epic": false,
-      "SongName": "VGMusicRox - Frantic Factory (",
-      "SongAuthor": "Viproxi"
-    },
-    {
-      "Id": "71781349",
-      "Author": "mishaochko",
-      "Name": "dolfhy challenge",
-      "Difficulty": "Harder",
-      "Stars": 0,
-      "Featured": false,
-      "Epic": false,
-      "SongName": "---Steel Terror---",
-      "SongAuthor": "Acid-Notation"
+      "SongName": "[Kriz & F-777] - Lightwaves",
+      "SongAuthor": "Kr1zF-777"
     }
   ]
 }
