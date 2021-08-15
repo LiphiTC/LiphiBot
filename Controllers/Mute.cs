@@ -7,7 +7,7 @@ using Twitcher.Controllers.Attributes;
 namespace MuteBot
 {
     [User("Any")]
-    [Channel("safrit22")]
+    [Channel("LiphiTC")]
     public class MuteController : Controller
     {
         private readonly APIHelper _api;

@@ -6,6 +6,7 @@ using Twitcher.Controllers.JsonHelper;
 using Twitcher.Controllers.APIHelper;
 using System.Collections.Generic;
 using LiphiBot2.Models;
+using TwitchLib.Client.Events;
 
 namespace LiphiBot2
 {
@@ -24,7 +25,7 @@ namespace LiphiBot2
                 "LiphiTC",
                 "Safrit22",
                 "33kk",
-                "WoahBlanketBot"
+                "RustKunXD",
             })
             .UseLogger(new ConsoleLoggerLiphi())
             .UseControllers()
@@ -32,7 +33,29 @@ namespace LiphiBot2
             .UseAPIHelper(apiToken.ClientID, apiToken.Token)
             .BuildControllers()
             .Connect();
+            client.Bot.OnUserJoined += (object sender, OnUserJoinedArgs args) =>
+            {
+                args.Username = args.Username.ToLower();
+                switch (args.Username)
+                {
+                    case "zakvielchannel":
+                    case "zakvielnight":
+                        client.Bot.SendMessage(args.Channel, "⚠ ВНИМАНИЕ! В ЧАТ ЗАШЁЛ ЗАК! ⚠");
+                        break;
+                    case "exx1dae":
+                    case "exx2dae":
+                        client.Bot.SendMessage(args.Channel, "⚠ ВНИМАНИЕ! В ЧАТ ЗАШЛА МАРИНА! ⚠");
+                        break;
+                    case "arrtur77":
+                        client.Bot.SendMessage(args.Channel, "⚠ ВНИМАНИЕ! В ЧАТ ЗАШЛЁЛ АРТУР! ⚠");
+                        break;
+                    case "nikover":
+                        client.Bot.SendMessage(args.Channel, "⚠ ВНИМАНИЕ! В ЧАТ ЗАШЛЁЛ КОВРИК! ⚠");
+                        break;
+                    
 
+                }
+            };
             Console.ReadLine();
         }
         private static List<TokenInfo> GetTokens(string path)

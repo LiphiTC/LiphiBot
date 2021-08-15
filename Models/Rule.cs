@@ -4,8 +4,9 @@ namespace LiphiBot2.Models
     {
         public string ID { get; set; }
         public string MuteTime { get; set; }
-        public bool ShowToUser { get; set; }
         public string RuleText { get; set; }
+        public string FullRuleText { get; set; }
+
 
     }
 }

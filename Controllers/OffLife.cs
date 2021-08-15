@@ -14,7 +14,7 @@ using Twitcher.Controllers.APIHelper;
 
 namespace LiphiBot2.Controllers
 {
-    [Channel("Safrit22")]
+    [Channel("LiphiTC")]
     [User("any")]
     public class OffLife : Controller
     {

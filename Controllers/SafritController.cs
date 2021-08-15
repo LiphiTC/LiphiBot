@@ -61,14 +61,13 @@ namespace LiphiBot2.Controllers
             SendAnswer("Ну и когда weirdChamp");
             return;
         }
-        [StartWith("!правила")]
-        public void Rules() => SendAnswer("Вот правила YEPTA 👉 https://i.nuuls.com/eaSy4.png https://i.nuuls.com/WlfLs.png");
 
         [StartWith("!туалет")]
         [CoolDown(30)]
-        public void Tyalet()  {
+        public void Tyalet()
+        {
             SendAnswer("YEP 👉 https://i.nuuls.com/xaCQl.png");
-        } 
+        }
 
         [StartWith("!gdbrowser")]
         public void GDBrowser(User m)
@@ -98,18 +97,7 @@ namespace LiphiBot2.Controllers
 
 
         }
-
-        [StartWith("!bttv")]
-        [CoolDown(20)]
-        public void BTTV(User m)
-        {
-            if (m == null)
-            {
-                SendAnswer("https://betterttv.com WoahBlanket");
-                return;
-            }
-            SendAnswer("https://betterttv.com WoahBlanket", m.UserName);
-        }
+        /*
         [StartWith("!асафритвчате", IsFullWord = true)]
         [CoolDown(20)]
         public async void YEP(User u)
@@ -127,28 +115,7 @@ namespace LiphiBot2.Controllers
 
             }
         }
-        [StartWith("!7tv")]
-        [CoolDown(20)]
-        public void Seventv(User m)
-        {
-            if (m == null)
-            {
-                SendAnswer("https://7tv.app WoahBlanket");
-                return;
-            }
-            SendAnswer("https://7tv.app WoahBlanket", m.UserName);
-        }
-        [StartWith("!ffz")]
-        [CoolDown(20)]
-        public void FFZ(User m)
-        {
-            if (m == null)
-            {
-                SendAnswer("https://www.frankerfacez.com WoahBlanket");
-                return;
-            }
-            SendAnswer("https://www.frankerfacez.com WoahBlanket", m.UserName);
-        }
+        */
 
         [StartWith("!addlevel")]
         [CoolDown(40)]
@@ -233,23 +200,7 @@ namespace LiphiBot2.Controllers
             SendAnswer("Ты чево наделал rooSnap");
         }
 
-        [CoolDown(20)]
-        [StartWith("!follow")]
-        public async void Follow(User u1, User u2)
-        {
-            DateTime startDate;
-            if (u1 is null && u2 is null)
-                startDate = await _api.User.GetFollowStartDateAsync(_api.Channel);
-            else if (u2 is null)
-                startDate = await u1.GetFollowStartDateAsync(_api.Channel);
-            else if (u1 is null)
-                startDate = await _api.User.GetFollowStartDateAsync(new Channel(_api.API, u2));
-            else
-                startDate = await u1.GetFollowStartDateAsync(new Channel(_api.API, u2));
-
-
-            SendAnswer(startDate.ToString());
-        }
+      
         [CoolDown(50)]
         [StartWith("!рандом")]
         public void Random(int? i, int? j)
@@ -277,27 +228,7 @@ namespace LiphiBot2.Controllers
             SendAnswer("WoahBlanket 👉 " + chatters.Count);
         }
 
-        [StartWith("!дела")]
-        public void Server2(User u) {
-            u = u == null ? _api.User : u;
-            SendAnswer("https://i.imgur.com/eUfNRNA.png YEP", u.UserName);
-        }
 
-         [StartWith("!янаместе")]
-        public void IaNaMeste(User u) {
-            u = u == null ? _api.User : u;
-            SendAnswer("https://i.kkx.one/t8iste5i.png YEP ", u.UserName);
-        }
-        [StartWith("!розыск")]
-        public void D(User u) {
-            u = u == null ? _api.User : u;
-            SendAnswer("https://i.kkx.one/60vylrtv.png Нужно поймать суку D:  ", u.UserName);
-        }
-        [StartWith("!дрочу")]
-        public void Cum(User u) {
-            u = u == null ? _api.User : u;
-            SendAnswer("https://i.kkx.one/hlfsnpcm.png PETTHEPEPEGA", u.UserName);
-        }
 
     }
 
