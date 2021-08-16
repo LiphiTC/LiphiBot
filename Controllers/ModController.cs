@@ -85,7 +85,7 @@ namespace MuteBot
                 SendAnswer("Неизвестное правило");
                 return;
             }
-            Send($"/timeout {user.UserName} {rule.MuteTime}{rule.RuleText}");
+            Send($"/timeout {user.UserName} {rule.MuteTime} {rule.RuleText}");
             SendAnswer($"Вы были замученны на {rule.MuteTime} за {rule.ID}: {rule.RuleText}", user.UserName);
         }
         [StartWith("!changeid", IsFullWord = true)]
