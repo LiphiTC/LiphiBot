@@ -45,12 +45,8 @@ namespace MuteBot
                 SendAnswer("Это правило уже есть PETTHEPEPEGA");
                 return;
             }
-            var splitedList = splited.ToList();
-            splitedList.RemoveAt(0);
-            splitedList.RemoveAt(0);
-            splitedList.RemoveAt(0);
 
-            rules.Add(new Rule() { ID = splited[1], MuteTime = splited[2], RuleText = string.Join(' ', splitedList) });
+            rules.Add(new Rule() { ID = splited[1], MuteTime = splited[2], RuleText = string.Join(' ', splited[3..]) });
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);
             SendAnswer("Правило успешно добавлено Starege");
         }
@@ -119,6 +115,32 @@ namespace MuteBot
             SendAnswer($"Успешно заменено {splited[1]} > {splited[2]} PETTHEBONK ");
 
         }
+        [StartWith("!del", IsFullWord = true)]
+        public void Delete()
+        {
+            string[] splited = Message.Message.Split(' ');
+            if (splited.Length < 2)
+            {
+                SendAnswer("<id> WoahBlanket");
+                return;
+            }
+
+            var rules = _json.GetObject<List<Rule>>("Rules", "Rules");
+            if (rules == null)
+                rules = new List<Rule>();
+
+            var rule = rules.FirstOrDefault(x => x.ID == splited[1]);
+
+            if (rule == null)
+            {
+                SendAnswer("Неизвестное правило");
+                return;
+            }
+            rules.Remove(rule);
+            _json.EditObject<List<Rule>>("Rules", "Rules", rules);
+            SendAnswer($"Успешно удалено {splited[1]} > {splited[2]} PETTHEBONK ");
+
+        }
         [StartWith("!changetime", IsFullWord = true)]
         public void ChangeTime()
         {
@@ -167,15 +189,40 @@ namespace MuteBot
                 SendAnswer("Неизвестное правило");
                 return;
             }
-            List<string> splitedList = splited.ToList();
-
-            splitedList.RemoveAt(0);
-            splitedList.RemoveAt(1);
             
-            rule.FullRuleText = string.Join(' ', splitedList);
+            rule.FullRuleText = string.Join(' ', splited[2..]);
 
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);
             SendAnswer($"Успешно заменён полный текст для: {splited[1]}");
+
+        }
+
+        [StartWith("!changetext", IsFullWord = true)]
+        public void ChangeText()
+        {
+            string[] splited = Message.Message.Split(' ');
+            if (splited.Length < 3)
+            {
+                SendAnswer("<id> <Новый текст> PETTHEPEEPOGA ");
+                return;
+            }
+
+            var rules = _json.GetObject<List<Rule>>("Rules", "Rules");
+            if (rules == null)
+                rules = new List<Rule>();
+
+            var rule = rules.FirstOrDefault(x => x.ID == splited[1]);
+
+            if (rule == null)
+            {
+                SendAnswer("Неизвестное правило");
+                return;
+            }
+            
+            rule.RuleText = string.Join(' ', splited[2..]);
+
+            _json.EditObject<List<Rule>>("Rules", "Rules", rules);
+            SendAnswer($"Успешно заменён текст для: {splited[1]}");
 
         }
 
