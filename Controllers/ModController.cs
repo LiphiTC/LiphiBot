@@ -138,7 +138,7 @@ namespace MuteBot
             }
             rules.Remove(rule);
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);
-            SendAnswer($"Успешно удалено {splited[1]} > {splited[2]} PETTHEBONK ");
+            SendAnswer($"Успешно удалено {splited[1]} PETTHEBONK ");
 
         }
         [StartWith("!changetime", IsFullWord = true)]
