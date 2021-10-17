@@ -26,6 +26,7 @@ namespace LiphiBot2
                 "Safrit22",
                 "33kk",
                 "RustKunXD",
+                "pajiada"
             })
             .UseLogger(new ConsoleLoggerLiphi())
             .UseControllers()

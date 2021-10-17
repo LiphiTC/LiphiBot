@@ -10,7 +10,9 @@ using System.Diagnostics;
 
 namespace LiphiBot2.Controllers
 {
-    [Channel("any")]
+    [Channel("Safrit22")]
+    [Channel("LiphiTC")]
+    [Channel("33kk")]
     [User("any")]
     public class PublicController : Controller
     {
@@ -69,6 +71,7 @@ namespace LiphiBot2.Controllers
         [StartWith("!logs", IsFullWord = true)]
         public void Logs(User u)
         {
+
             if (u == null)
             {
                 SendAnswer("YEP 👉 https://justlog.kkx.one");
@@ -76,11 +79,7 @@ namespace LiphiBot2.Controllers
             }
             SendAnswer($"YEP 👉 https://justlog.kkx.one/?channel={_api.Channel.Broadcaster.UserName}&username={u.UserName}");
         }
-        [User("Killian_Jons")]
-        public void Killian()
-        {
-            Send("peepoCringe");
-        }
+
         [StartWith("&ping", IsFullWord = true)]
         public void Ping(User user)
         {
@@ -88,10 +87,11 @@ namespace LiphiBot2.Controllers
             ProcessStartInfo startInfo = new ProcessStartInfo() { FileName = "/bin/bash", Arguments = "/bin/sensors", };
             Process proc = new Process() { StartInfo = startInfo, };
             proc.Start();
-            proc.OutputDataReceived += (object sender, DataReceivedEventArgs args) => {
+            proc.OutputDataReceived += (object sender, DataReceivedEventArgs args) =>
+            {
                 Console.WriteLine(args.Data);
             };
-            
+
         }
 
 
