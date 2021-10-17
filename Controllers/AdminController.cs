@@ -12,12 +12,14 @@ using System.Threading.Tasks;
 using TwitchLib.Api.Helix.Models.ChannelPoints.CreateCustomReward;
 using LiphiBot2.Models;
 using Twitcher.Controllers.APIHelper;
+using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 
 namespace LiphiBot2.Controllers
 {
     [Channel("any")]
     [User("LiphiTC")]
-        [User("LiphiTheCat")]
+    [User("LiphiTheCat")]
     public class AdminController : Controller
     {
         private readonly JsonHelper _helper;
@@ -26,6 +28,42 @@ namespace LiphiBot2.Controllers
         {
             _helper = helper;
             _api = api;
+        }
+
+        [StartWith("!ebal")]
+        public async void Ebal()
+        {
+            if (Message.Message.Length <= 6)
+            {
+                return;
+            }
+
+            string expr = Message.Message.Substring(6);
+
+            try
+            {
+                var result = await CSharpScript.EvaluateAsync(expr,
+                    ScriptOptions.Default
+                        .WithImports(new string[]
+                        {
+                            "System"
+                        })
+                        .WithEmitDebugInformation(true)
+                );
+
+                if (result != null)
+                {
+                    SendAnswer(result.ToString());
+                }
+                else
+                {
+                    SendAnswer("А нихуя Starege");
+                }
+            }
+            catch (Exception e)
+            {
+                SendAnswer($"Пиздец Starege {e.Message}");
+            }
         }
 
         [StartWith("!addcomb")]
