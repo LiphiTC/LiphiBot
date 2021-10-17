@@ -6,6 +6,7 @@ using Twitcher.Controllers;
 using Twitcher.Controllers.Attributes;
 using Twitcher.Controllers.JsonHelper;
 using Twitcher.Controllers.APIHelper;
+using System.Diagnostics;
 
 namespace LiphiBot2.Controllers
 {
@@ -68,7 +69,8 @@ namespace LiphiBot2.Controllers
         [StartWith("!logs", IsFullWord = true)]
         public void Logs(User u)
         {
-            if(u == null) {
+            if (u == null)
+            {
                 SendAnswer("YEP 👉 https://justlog.kkx.one");
                 return;
             }
@@ -79,7 +81,19 @@ namespace LiphiBot2.Controllers
         {
             Send("peepoCringe");
         }
-      
-        
+        [StartWith("&ping", IsFullWord = true)]
+        public void Ping(User user)
+        {
+            user ??= _api.User;
+            ProcessStartInfo startInfo = new ProcessStartInfo() { FileName = "/bin/bash", Arguments = "/bin/sensors", };
+            Process proc = new Process() { StartInfo = startInfo, };
+            proc.Start();
+            proc.OutputDataReceived += (object sender, DataReceivedEventArgs args) => {
+                Console.WriteLine(args.Data);
+            };
+            
+        }
+
+
     }
 }

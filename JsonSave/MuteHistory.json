@@ -1,0 +1,39 @@
+{
+  "Mutes": [
+    {
+      "UserID": "96659408",
+      "Moderator": "liphitc",
+      "Rule": "2.1",
+      "MuteGroup": null,
+      "MutedOn": "2021-08-19T13:36:59.6677122+03:00"
+    },
+    {
+      "UserID": "96659408",
+      "Moderator": "liphitc",
+      "Rule": "2.1",
+      "MuteGroup": null,
+      "MutedOn": "2021-08-19T13:38:10.9369794+03:00"
+    },
+    {
+      "UserID": "96659408",
+      "Moderator": "liphitc",
+      "Rule": "2.1",
+      "MuteGroup": null,
+      "MutedOn": "2021-08-19T13:38:24.921413+03:00"
+    },
+    {
+      "UserID": "475895687",
+      "Moderator": "liphitc",
+      "Rule": "1.1",
+      "MuteGroup": null,
+      "MutedOn": "2021-08-25T15:08:40.9610921+03:00"
+    },
+    {
+      "UserID": "264630545",
+      "Moderator": "nexysssss",
+      "Rule": "1.1",
+      "MuteGroup": null,
+      "MutedOn": "2021-08-25T20:40:55.5878727+03:00"
+    }
+  ]
+}

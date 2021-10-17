@@ -6,7 +6,7 @@ namespace LiphiBot2.Models
         public string MuteTime { get; set; }
         public string RuleText { get; set; }
         public string FullRuleText { get; set; }
-
+        public string Link { get; set; }
 
     }
 }

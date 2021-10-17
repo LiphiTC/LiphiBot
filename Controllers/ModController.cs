@@ -71,6 +71,8 @@ namespace MuteBot
                 return;
             }
             var rules = _json.GetObject<List<Rule>>("Rules", "Rules");
+            var userMutes = _json.GetObject<List<MutedUser>>("MuteHistory", "Mutes");
+
             if (rules == null)
                 rules = new List<Rule>();
 
@@ -81,6 +83,26 @@ namespace MuteBot
                 SendAnswer("Неизвестное правило");
                 return;
             }
+
+            var linkedRules = rules.Where(x => x.Link == rule.Link);
+            var mutedList = _json.GetObject<List<MutedUser>>("MuteHistory", "Mutes");
+            mutedList ??= new List<MutedUser>();
+
+            short sameTimeBan = (short)mutedList.Where(x => x.UserID == user.UserID &&
+            (DateTime.Now - x.MutedOn) < new TimeSpan(7, 0, 0, 0, 0) &&
+            ((x.MuteGroup ?? "paja dank") == rule.Link)).Count();
+
+            mutedList.Add(new MutedUser()
+            {
+                UserID = user.UserID,
+                Moderator = _api.User.UserName,
+                Rule = rule.ID,
+                MutedOn = DateTime.Now,
+                MuteGroup = rule.Link
+            });
+            _json.EditObject<List<MutedUser>>("MuteHistory", "Mutes", mutedList);
+
+
             Send($"/timeout {user.UserName} {rule.MuteTime} {rule.RuleText}");
             SendAnswer($"Вы были замученны на {rule.MuteTime} за {rule.ID}: {rule.RuleText}", user.UserName);
         }
@@ -113,6 +135,48 @@ namespace MuteBot
             rule.ID = splited[2];
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);
             SendAnswer($"Успешно заменено {splited[1]} > {splited[2]} PETTHEBONK ");
+        }
+        [StartWith("!мбан", IsFullWord = true)]
+        public void MultiBan()
+        {
+            string[] splited = Message.Message.Split(' ');
+            if (splited.Length < 3)
+            {
+                SendAnswer("<причина> <юзеpы[]>");
+                return;
+            }
+            foreach (string s in splited[2..])
+            {
+                s.Replace('@', ' ');
+                s.Replace(',', ' ');
+                Send($"/ban {s} {splited[1]}");
+            }
+        }
+        [StartWith("!rlink", IsFullWord = true)]
+        public void RuleLink()
+        {
+            string[] splited = Message.Message.Split(' ');
+            if (splited.Length < 2)
+            {
+                SendAnswer("<id правила> <id группы> WoahBlanket");
+                return;
+            }
+
+            var rules = _json.GetObject<List<Rule>>("Rules", "Rules");
+            if (rules == null)
+                rules = new List<Rule>();
+
+            var rule = rules.FirstOrDefault(x => x.ID == splited[1]);
+
+            if (rule == null)
+            {
+                SendAnswer("Неизвестное правило");
+                return;
+            }
+
+            rule.Link = splited[2];
+            _json.EditObject<List<Rule>>("Rules", "Rules", rules);
+            SendAnswer($"Правило {splited[1]} успешно привязанно к группе {splited[2]} PETTHEBONK ");
 
         }
         [StartWith("!del", IsFullWord = true)]
@@ -189,7 +253,7 @@ namespace MuteBot
                 SendAnswer("Неизвестное правило");
                 return;
             }
-            
+
             rule.FullRuleText = string.Join(' ', splited[2..]);
 
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);
@@ -218,7 +282,7 @@ namespace MuteBot
                 SendAnswer("Неизвестное правило");
                 return;
             }
-            
+
             rule.RuleText = string.Join(' ', splited[2..]);
 
             _json.EditObject<List<Rule>>("Rules", "Rules", rules);

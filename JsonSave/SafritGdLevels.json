@@ -1,37 +1,14 @@
 {
+  "Queue": [],
   "CurrentLevel": {
-    "Id": "60679881",
-    "Author": "Unzor",
-    "Name": "Moonlight",
-    "Difficulty": "Hard",
-    "Stars": 5,
-    "Featured": true,
-    "Epic": true,
-    "SongName": "cloudfield - Fantasy (ft. Reichuu)",
-    "SongAuthor": "cloudfield"
-  },
-  "Queue": [
-    {
-      "Id": "72399987",
-      "Author": "Dimasik2007gg",
-      "Name": "MenDozaV ",
-      "Difficulty": "Hard",
-      "Stars": 0,
-      "Featured": false,
-      "Epic": false,
-      "SongName": "2.2 Will Never Come Out",
-      "SongAuthor": "decodyofficial"
-    },
-    {
-      "Id": "72405842",
-      "Author": "TheYarik",
-      "Name": "collab all lvl",
-      "Difficulty": "Harder",
-      "Stars": 0,
-      "Featured": false,
-      "Epic": false,
-      "SongName": "[Kriz & F-777] - Lightwaves",
-      "SongAuthor": "Kr1zF-777"
-    }
-  ]
+    "Id": "66315708",
+    "Author": "NikiGass",
+    "Name": "Limbanoria Test",
+    "Difficulty": "Normal",
+    "Stars": 0,
+    "Featured": false,
+    "Epic": false,
+    "SongName": "~:Lunar Abyss:~",
+    "SongAuthor": "lchavasse"
+  }
 }

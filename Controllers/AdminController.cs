@@ -82,7 +82,11 @@ namespace LiphiBot2.Controllers
             SendAnswer("Таймер отсановлен PETTHEPEPEGA на " + _timerName + " ушло " + (DateTime.Now - _timerStart) + " PETTHEPEPEGA");
             _timerStart = default;
         }
-
+        [StartWith("!asslogin")]
+        public void AssLogin()
+        {
+            SendAnswer("Успешный вход в жопу YEP");
+        }
         [StartWith("!registerreward")]
         public async void RegisterReward()
         {

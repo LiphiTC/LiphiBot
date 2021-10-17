@@ -34,6 +34,8 @@ namespace MuteBot
         public void Kill()
         {
             Send($"/delete {Message.Id}");
+
+            
         }
         [StartWith("!гн", IsFullWord = true)]
         public void Gn()

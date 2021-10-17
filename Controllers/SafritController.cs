@@ -227,7 +227,13 @@ namespace LiphiBot2.Controllers
             var chatters = await _api.Channel.GetUsersAsync();
             SendAnswer("WoahBlanket 👉 " + chatters.Count);
         }
-
+        [CoolDown(30)]
+        [StartWith("!какполучитьвипкуузака", IsFullWord = true)]
+        public void HowToVip(User u)
+        {
+            u ??= _api.User;
+            SendAnswer("просто купи ЛОООООЛ 4HEader");
+        }
 
 
     }
