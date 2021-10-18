@@ -14,7 +14,7 @@ using Twitcher.Controllers.APIHelper;
 
 namespace LiphiBot2.Controllers
 {
-    [Channel("33kk")]
+    [Channel("pajlada")]
     
     public class Pajiada : Controller
     {
