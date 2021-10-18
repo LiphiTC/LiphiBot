@@ -14,12 +14,12 @@ using Twitcher.Controllers.APIHelper;
 
 namespace LiphiBot2.Controllers
 {
-    [Channel("pajlada")]
+    [Channel("33kk")]
     
     public class Pajiada : Controller
     {
 
-        [Contains("ALERT")]
+        [Same("pajaS 🚨 ALERT")]
         [User("pajbot")]
         [User("LiphiTC")]
         public void Pizda()
