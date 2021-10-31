@@ -26,12 +26,17 @@ namespace LiphiBot2.Controllers
             _api = api;
         }
         [StartWith("!проект")]
-        public void Server(User u) {
+        public void Server(User u)
+        {
             u = u == null ? _api.User : u;
             SendAnswer("Кастомный аутх сервер для майна WoahBlanket", u.UserName);
         }
-       
-        
+        [StartWith("!какнапугать33kk")]
+        public void Bruh(User u)
+        {
+            SendAnswer("https://i.kkx.one/h6ql8zb6.png");
+        }
+
 
     }
 

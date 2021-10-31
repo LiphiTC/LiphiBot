@@ -221,6 +221,22 @@ namespace LiphiBot2.Controllers
 
         }
         [CoolDown(50)]
+        [StartWith("!gillette")]
+        public void Pizdec()
+        {
+            SendAnswer("ЭТО БЛЯТЬ ЧАТ САФРИТА, НЕ ДОЛБАЁБА, ИДИ ОТСЮДА НАХУЙ СО СВОЕЙ РЕКЛАМНОЙ ХУЙНЁЙ");
+            return;
+
+        }
+        [CoolDown(50)]
+        [StartWith("!этостоило100рублей")]
+        public void Rubles()
+        {
+            SendAnswer("Starege 👉 https://clips.twitch.tv/SparklyFilthyPicklesCoolStoryBob-L0IdhquUH7CZ4jik");
+            return;
+
+        }
+        [CoolDown(50)]
         [StartWith("!чатеры")]
         public async void Chatter()
         {
