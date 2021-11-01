@@ -117,38 +117,7 @@ namespace LiphiBot2.Controllers
         }
         */
 
-        [StartWith("!addlevel")]
-        [CoolDown(40)]
-        public async void AddLevel(int? id)
-        {
-            if (id == null)
-            {
-                SendAnswer("Введите id левла PETTHEPEPEGA");
-                return;
-            }
-            var client = new RestClient("https://gdbrowser.com/api");
-            var request = new RestRequest("level/" + id);
-            var response = await client.ExecuteGetAsync(request);
-            if (response.Content == "-1")
-            {
-                SendAnswer("неизвестный левел PETTHEPEPEGA");
-                return;
-            }
-            var level = JsonConvert.DeserializeObject<GDLevel>(response.Content);
-
-            var levels = _helper.GetObject<List<GDLevel>>("SafritGdLevels", "Queue");
-            if (levels == null)
-                levels = new List<GDLevel>();
-
-            if (levels.Any(x => x.Id == level.Id))
-            {
-                SendAnswer("Этот уровень уже есть в очереди PETTHEPEPEGA Его позиция: " + levels.FindIndex(x => x.Id == level.Id));
-                return;
-            }
-            levels.Add(level);
-            _helper.EditObject<List<GDLevel>>("SafritGdLevels", "Queue", levels);
-            SendAnswer($"Уровень {level.Name} успешно добавлен в очередь PETTHEPEPEGA Его позиция: {levels.Count - 1}");
-        }
+        
         [StartWith("!level")]
         [CoolDown(30)]
         public void Level()
@@ -200,7 +169,7 @@ namespace LiphiBot2.Controllers
             SendAnswer("Ты чево наделал rooSnap");
         }
 
-      
+
         [CoolDown(50)]
         [StartWith("!рандом")]
         public void Random(int? i, int? j)
@@ -251,6 +220,53 @@ namespace LiphiBot2.Controllers
             SendAnswer("просто купи ЛОООООЛ 4HEader");
         }
 
+
+        public async void Balls()
+        {
+            string yep = Message.CustomRewardId;
+            if (yep == "1b323ba3-6cdf-4309-9e6a-47042f848f2c")
+            {
+                string[] splted = Message.Message.Split(' ');
+                foreach (string s in splted)
+                {
+                    long id;
+                    if (long.TryParse(s, out id))
+                    {
+                        var client = new RestClient("https://gdbrowser.com/api");
+                        var request = new RestRequest("level/" + id);
+                        var response = await client.ExecuteGetAsync(request);
+                        string idS = "";
+
+                        GDLevel level = new();
+                        if (response.Content == "-1")
+                        {
+                            idS = Message.Message;
+                        }
+                        else
+                        {
+                            level = JsonConvert.DeserializeObject<GDLevel>(response.Content);
+                        }
+                        level.Id ??= idS;
+                        var levels = _helper.GetObject<List<GDLevel>>("SafritGdLevels", "Queue");
+                        if (levels == null)
+                            levels = new List<GDLevel>();
+
+                        if (levels.Any(x => x.Id == level.Id))
+                        {
+                            SendAnswer("Этот уровень уже есть в очереди PETTHEPEPEGA Его позиция: " + levels.FindIndex(x => x.Id == level.Id));
+                            return;
+                        }
+
+                        levels.Add(level);
+                        _helper.EditObject<List<GDLevel>>("SafritGdLevels", "Queue", levels);
+                        SendAnswer($"Уровень {level.Name} успешно добавлен в очередь PETTHEPEPEGA Его позиция: {levels.Count - 1}");
+                        return;
+                    }
+                }
+                SendAnswer("Укажите id левла");
+
+            }
+        }
 
     }
 
