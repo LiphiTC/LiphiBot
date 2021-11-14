@@ -20,6 +20,7 @@ namespace LiphiBot2.Controllers
     [Channel("any")]
     [User("LiphiTC")]
     [User("LiphiTheCat")]
+    [User("33KK")]
     public class AdminController : Controller
     {
         private readonly JsonHelper _helper;
