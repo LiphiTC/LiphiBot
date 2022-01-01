@@ -53,6 +53,7 @@ namespace LiphiBot2.Controllers
             SendAnswer("weirdChamp 👉 {Кол-во} {Кому}");
 
         }
+        
         [StartWith("!removesub", IsFullWord = true)]
         [User("liphitc")]
         [User("Safrit22")]
@@ -161,7 +162,6 @@ namespace LiphiBot2.Controllers
         }
 
         
-
         [NonCommand]
         private string GetSubName(float count)
         {

@@ -7,6 +7,7 @@ using Twitcher.Controllers.APIHelper;
 using System.Collections.Generic;
 using LiphiBot2.Models;
 using TwitchLib.Client.Events;
+using System.Threading.Tasks;
 
 namespace LiphiBot2
 {
@@ -15,6 +16,7 @@ namespace LiphiBot2
         public static List<TokenInfo> Tokens { get; private set; }
         public static void Main(string[] args)
         {
+            //FizzBuzz
             Tokens = GetTokens(args[0]);
             TokenInfo chatToken = Tokens.FirstOrDefault(x => x.TokenPurpose == "MAIN_CHAT");
             TokenInfo apiToken = Tokens.FirstOrDefault(x => x.TokenPurpose == "MAIN_API");
@@ -26,8 +28,8 @@ namespace LiphiBot2
                 "Safrit22",
                 "33kk",
                 "RustKunXD",
-                "pajlada"
-                
+                "pajlada",
+                "Toni__Stark_"
             })
             .UseLogger(new ConsoleLoggerLiphi())
             .UseControllers()
@@ -58,7 +60,7 @@ namespace LiphiBot2
 
                 }
             };
-            Console.ReadLine();
+            while(true) {}
         }
         private static List<TokenInfo> GetTokens(string path)
         {
