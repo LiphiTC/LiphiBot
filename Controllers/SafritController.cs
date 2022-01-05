@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using RestSharp;
 using LiphiBot2.Models;
 using Newtonsoft.Json.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Twitcher.Controllers.APIHelper;
 
 namespace LiphiBot2.Controllers
@@ -235,19 +237,27 @@ namespace LiphiBot2.Controllers
                 SendAnswer("Укажите жертву MEGALUL");
                 return;
             }
+            CancellationTokenSource source = new();
             _cuurentVote = new Vote()
             {
                 StartDate = DateTime.Now,
                 Target = u,
                 Creater = _api.User.UserName,
                 RequiredVotes = (await _api.API.Undocumented.GetChattersAsync("safrit22")).Count / 3,
-                VotedUser = new()
+                VotedUser = new(),
+                CancellationTokenSource = source
             };
             Send("Началось голосование на бан " + u.UserName + " MEGALUL");
-            await System.Threading.Tasks.Task.Delay(300000);
-            Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанить NOPE");
+            Task s = System.Threading.Tasks.Task.Delay(300000);
+            await s;
+            if (!s.IsCanceled)
+            {
+                _cuurentVote = null;
+                Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанить NOPE");
+            }
+
         }
-        
+
         [StartWith("!voteyep", IsFullWord = true)]
         public async void VoteYEP(User u)
         {
@@ -263,9 +273,10 @@ namespace LiphiBot2.Controllers
             }
             _cuurentVote.VotedUser.Add(_api.User.UserID);
             SendAnswer($"Вы успешно проголосовали PogT ({_cuurentVote.VotedUser.Count}/{_cuurentVote.RequiredVotes})");
-            if(_cuurentVote.VotedUser.Count == _cuurentVote.RequiredVotes) {
-                Send("Набралось необходимое количество голосов, баним "  + _cuurentVote.Target.UserName + " PogT");
-                Send("/timeout " + _cuurentVote.Target.UserName + " 10m Результат воутбана"); 
+            if (_cuurentVote.VotedUser.Count == _cuurentVote.RequiredVotes)
+            {
+                Send("Набралось необходимое количество голосов, баним " + _cuurentVote.Target.UserName + " PogT");
+                Send("/timeout " + _cuurentVote.Target.UserName + " 10m Результат воутбана");
                 _cuurentVote = null;
             }
         }
