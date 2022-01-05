@@ -247,7 +247,7 @@ namespace LiphiBot2.Controllers
             await System.Threading.Tasks.Task.Delay(300000);
             Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанит NOPE");
         }
-        [CoolDown(30)]
+        
         [StartWith("!voteyep", IsFullWord = true)]
         public async void VoteYEP(User u)
         {
