@@ -251,7 +251,7 @@ namespace LiphiBot2.Controllers
         [StartWith("!voteyep", IsFullWord = true)]
         public async void VoteYEP(User u)
         {
-            if (_cuurentVote != null)
+            if (_cuurentVote == null)
             {
                 SendAnswer("Сейчас не идёт голосование на бан NOPE");
                 return;
