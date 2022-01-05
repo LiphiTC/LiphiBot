@@ -21,6 +21,7 @@ namespace LiphiBot2.Controllers
     {
         private readonly JsonHelper _helper;
         private readonly APIHelper _api;
+        private static Vote _cuurentVote;
         public SafritController(JsonHelper helper, APIHelper api)
         {
             _helper = helper;
@@ -117,7 +118,7 @@ namespace LiphiBot2.Controllers
         }
         */
 
-        
+
         [StartWith("!level")]
         [CoolDown(30)]
         public void Level()
@@ -220,6 +221,54 @@ namespace LiphiBot2.Controllers
             SendAnswer("просто купи ЛОООООЛ 4HEader");
         }
 
+        [CoolDown(30)]
+        [StartWith("!voteban", IsFullWord = true)]
+        public async void VoteBan(User u)
+        {
+            if (_cuurentVote != null)
+            {
+                SendAnswer("Уже идёт голосованеи на бан " + _cuurentVote.Target.UserName);
+                return;
+            }
+            if (u == null)
+            {
+                SendAnswer("Укажите жертву MEGALUL");
+                return;
+            }
+            _cuurentVote = new Vote()
+            {
+                StartDate = DateTime.Now,
+                Target = u,
+                Creater = _api.User.UserName,
+                RequiredVotes = (await _api.API.Undocumented.GetChattersAsync("safrit22")).Count / 2,
+                VotedUser = new()
+            };
+            Send("Началось голосование на бан " + u.UserName + " MEGALUL");
+            await System.Threading.Tasks.Task.Delay(300000);
+            Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанит NOPE");
+        }
+        [CoolDown(30)]
+        [StartWith("!voteyep", IsFullWord = true)]
+        public async void VoteYEP(User u)
+        {
+            if (_cuurentVote != null)
+            {
+                SendAnswer("Сейчас не идёт голосование на бан NOPE");
+                return;
+            }
+            if (_cuurentVote.VotedUser.Any(x => x == _api.User.UserID))
+            {
+                SendAnswer("Вы уже голосовли NOPE");
+                return;
+            }
+            _cuurentVote.VotedUser.Add(_api.User.UserID);
+            SendAnswer($"Вы успешно проголосовали PogT ({_cuurentVote.VotedUser.Count}/{_cuurentVote.RequiredVotes})");
+            if(_cuurentVote.VotedUser.Count == _cuurentVote.RequiredVotes) {
+                Send("Набралось необходимое количество голосов, баним "  + _cuurentVote.Target.UserName + " PogT");
+                Send("/timeout " + _cuurentVote.Target.UserName + " 10m Результат воутбана"); 
+                _cuurentVote = null;
+            }
+        }
 
         public async void Balls()
         {
