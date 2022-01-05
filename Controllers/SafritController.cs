@@ -240,12 +240,12 @@ namespace LiphiBot2.Controllers
                 StartDate = DateTime.Now,
                 Target = u,
                 Creater = _api.User.UserName,
-                RequiredVotes = (await _api.API.Undocumented.GetChattersAsync("safrit22")).Count / 2,
+                RequiredVotes = (await _api.API.Undocumented.GetChattersAsync("safrit22")).Count / 3,
                 VotedUser = new()
             };
             Send("Началось голосование на бан " + u.UserName + " MEGALUL");
             await System.Threading.Tasks.Task.Delay(300000);
-            Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанит NOPE");
+            Send("Прошло слишком много времени Sadge " + u.UserName + " не успели забанить NOPE");
         }
         
         [StartWith("!voteyep", IsFullWord = true)]
@@ -258,7 +258,7 @@ namespace LiphiBot2.Controllers
             }
             if (_cuurentVote.VotedUser.Any(x => x == _api.User.UserID))
             {
-                SendAnswer("Вы уже голосовли NOPE");
+                SendAnswer("Вы уже голосовали NOPE");
                 return;
             }
             _cuurentVote.VotedUser.Add(_api.User.UserID);
