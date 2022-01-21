@@ -21,6 +21,7 @@ namespace LiphiBot2.Controllers
     [User("any")]
     public class SafritController : Controller
     {
+
         private readonly JsonHelper _helper;
         private readonly APIHelper _api;
         private static Vote _cuurentVote;
@@ -31,7 +32,7 @@ namespace LiphiBot2.Controllers
         }
         [StartWith("!когдастрим", IsFullWord = true)]
         [CoolDown(300)]
-        public void WhenStream()
+        public void WhenStream(string when)
         {
             var dateTime = _helper.GetObject<DateTime>("SafritStreams", "Streams");
             if (dateTime < DateTime.Now)
@@ -57,7 +58,7 @@ namespace LiphiBot2.Controllers
             DateTime time;
             if (DateTimeRoutines.TryParseDateOrTime(dateNotParsed, DateTimeRoutines.DateTimeFormat.UK_DATE, out time))
             {
-                _helper.EditObject<DateTime>("SafritStreams", "Streams", time);
+                _helper.EditObject<DateTime>("SafritStreams", "Streams", time.AddHours(-2));
                 SendAnswer("записал PepoG");
                 return;
             }
@@ -258,8 +259,15 @@ namespace LiphiBot2.Controllers
 
         }
 
+        [StartWith("!banme ")]
+        [User("x3_xto")]
+        public void NOPE() {
+            Send("/unban x3_xto");
+            SendAnswer("NOPE");
+        }
+
         [StartWith("!voteyep", IsFullWord = true)]
-        public async void VoteYEP(User u)
+        public void VoteYEP(User u)
         {
             if (_cuurentVote == null)
             {

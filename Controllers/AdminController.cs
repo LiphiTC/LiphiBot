@@ -87,6 +87,37 @@ namespace LiphiBot2.Controllers
             _helper.EditObject<Dictionary<string, string>>("SmilesSpamer", "SpamOn", s);
             SendAnswer("готово WoahBlanket");
         }
+        [StartWith("!addtimezone")]
+        public void AddTimeZone(string zone, int? time)
+        {
+
+            var s = _helper.GetObject<Dictionary<string, int>>("TimeZones", "Zones");
+            if (s is null)
+                s = new();
+            if (zone is null || time is null)
+            {
+                SendAnswer("Чё-та хуйня NOPE");
+                return;
+            }
+            s.Add(zone, time.Value);
+            _helper.EditObject<Dictionary<string, int>>("TimeZones", "Zones", s);
+            SendAnswer("готово WoahBlanket");
+        }
+        [StartWith("!settimezone")]
+        public void SetTimeZone(User user, string time)
+        {
+
+            var s = _helper.GetObject<Dictionary<string, int>>("TimeZones", "Zones");
+            if (s is null)
+                s = new();
+            if (user is null || time is null)
+            {
+                SendAnswer("Чё-та хуйня NOPE");
+                return;
+            }
+            _helper.EditObject<Dictionary<string, int>>("TimeZones", "Zones", s);
+            SendAnswer("готово WoahBlanket");
+        }
         [CoolDown(50)]
         [StartWith("!чатеры")]
         public async void Chatter()
