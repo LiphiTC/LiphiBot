@@ -118,6 +118,15 @@ namespace LiphiBot2.Controllers
             _helper.EditObject<Dictionary<string, int>>("TimeZones", "Zones", s);
             SendAnswer("готово WoahBlanket");
         }
+        [StartWith("!startuptimespam")]
+        public async void UptimeSpam()
+        {
+            while (true) {
+                var time = TimeSpan.FromMilliseconds(Environment.TickCount); 
+                Send($"Сервак жив! Uptime: { time.Days } Days { time.Hours } Hours PogT");
+                await Task.Delay(43200000);
+            }
+        }
         [CoolDown(50)]
         [StartWith("!чатеры")]
         public async void Chatter()

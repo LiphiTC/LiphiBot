@@ -285,6 +285,7 @@ namespace LiphiBot2.Controllers
             {
                 Send("Набралось необходимое количество голосов, баним " + _cuurentVote.Target.UserName + " PogT");
                 Send("/timeout " + _cuurentVote.Target.UserName + " 10m Результат воутбана");
+               
                 _cuurentVote = null;
             }
         }
