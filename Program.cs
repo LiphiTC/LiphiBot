@@ -14,7 +14,7 @@ namespace LiphiBot2
     public class Program
     {
         public static List<TokenInfo> Tokens { get; private set; }
-        public static void Main(string[] args)
+        public static async void Main(string[] args)
         {
             //FizzBuzz
             Tokens = GetTokens(args[0]);
@@ -60,7 +60,9 @@ namespace LiphiBot2
 
                 }
             };
-            while(true) {}
+            while(true) {
+                await Task.Delay(100000);
+            }
         }
         private static List<TokenInfo> GetTokens(string path)
         {
