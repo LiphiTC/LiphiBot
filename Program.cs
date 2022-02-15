@@ -14,7 +14,7 @@ namespace LiphiBot2
     public class Program
     {
         public static List<TokenInfo> Tokens { get; private set; }
-        public static async void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             //FizzBuzz
             Tokens = GetTokens(args[0]);
