@@ -25,10 +25,10 @@ namespace LiphiBot2
             .JoinChannels(new string[] {
                 "LiphiTC",
                 "Safrit22",
-                "33kk",
-                "RustKunXD",
-                "pajlada",
-                "Toni__Stark_",
+                //"33kk",
+                //"RustKunXD",
+                //"pajlada",
+                //"Toni__Stark_",
                 "ZakvielChannel"
             })
             .UseLogger(new ConsoleLoggerLiphi())
