@@ -22,14 +22,14 @@ namespace LiphiBot2
             TokenInfo apiToken = Tokens.FirstOrDefault(x => x.TokenPurpose == "MAIN_API");
             var client = new TwitcherClient()
             .UseTwitchLibProvider(new TwitchLib.Client.Models.ConnectionCredentials(chatToken.UserName, chatToken.Token))
-            .JoinChannel("ZakvielChannel")
             .JoinChannels(new string[] {
                 "LiphiTC",
                 "Safrit22",
                 "33kk",
                 "RustKunXD",
                 "pajlada",
-                "Toni__Stark_"
+                "Toni__Stark_",
+                "ZakvielChannel"
             })
             .UseLogger(new ConsoleLoggerLiphi())
             .UseControllers()
