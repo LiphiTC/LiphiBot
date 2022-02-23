@@ -37,6 +37,10 @@ namespace LiphiBot2
             .UseAPIHelper(apiToken.ClientID, apiToken.Token)
             .BuildControllers()
             .Connect();
+            client.Bot.OnJoinedChannel += (object sender, OnJoinedChannelArgs args) => {
+                client.Bot.SendMessage(args.Channel, "YEP");
+            };
+
             // client.Bot.OnUserJoined += (object sender, OnUserJoinedArgs args) =>
             // {
             //     args.Username = args.Username.ToLower();
