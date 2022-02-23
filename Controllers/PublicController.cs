@@ -12,6 +12,7 @@ namespace LiphiBot2.Controllers
 {
     [Channel("Safrit22")]
     [Channel("LiphiTC")]
+    [Channel("ZakvielChannel")]
     [Channel("33kk")]
     [User("any")]
     public class PublicController : Controller
