@@ -48,37 +48,38 @@ namespace LiphiBot2.Controllers
             SendAnswer("EBLAN успешно добавлен EBLAN");
 
         }
-        [StartWith("!eblans", IsFullWord = true)]
-        [CoolDown(40)]
-        public async void Eblans(User u)
-        {
-            if ((await _api.API.V5.Streams.GetStreamByUserAsync(_api.Channel.Broadcaster.UserID)).Stream != null)
-                return;
+        // [StartWith("!eblans", IsFullWord = true)]
+        // [CoolDown(40)]
+        // public async void Eblans(User u)
+        // {
+        //     if ((await _api.API.V5.Streams.GetStreamByUserAsync(_api.Channel.Broadcaster.UserID)).Stream != null)
+        //         return;
 
-            u = u == null ? _api.User : u;
-            var eblans = _helper.GetObject<List<string>>("Ebalns", "Ebalns");
-            string result = "EBLAN 👉 ";
-            for (int i = 0; i < eblans.Count; i++)
-            {
-                if (i == eblans.Count - 1)
-                {
-                    result += eblans[i];
-                    continue;
-                }
-                result += (eblans[i] + ", ");
-            }
-            SendAnswer(result, u.UserName);
-        }
+        //     u = u == null ? _api.User : u;
+        //     var eblans = _helper.GetObject<List<string>>("Ebalns", "Ebalns");
+        //     string result = "EBLAN 👉 ";
+        //     for (int i = 0; i < eblans.Count; i++)
+        //     {
+        //         if (i == eblans.Count - 1)
+        //         {
+        //             result += eblans[i];
+        //             continue;
+        //         }
+        //         result += (eblans[i] + ", ");
+        //     }
+        //     SendAnswer(result, u.UserName);
+        //}
         [StartWith("!logs", IsFullWord = true)]
         public void Logs(User u)
         {
-
+            const string s = "👆👆🏻👆🏼👆🏽👆🏾👆🏿👇👇🏻👇🏼👇🏽👇🏾👇🏿👈👈🏻👈🏼👈🏽👈🏾👈🏿👉👉🏻👉🏼👉🏽👉🏾👉🏿";
+            Random r = new Random();
             if (u == null)
             {
-                SendAnswer("YEP 👉 https://justlog.kkx.one");
+                SendAnswer("YEP " + s[r.Next(0, s.Length - 1)] + " https://justlog.kkx.one");
                 return;
             }
-            SendAnswer($"YEP 👉 https://justlog.kkx.one/?channel={_api.Channel.Broadcaster.UserName}&username={u.UserName}");
+            SendAnswer($"YEP " + s[r.Next(0, s.Length - 1)] + " https://justlog.kkx.one/?channel={_api.Channel.Broadcaster.UserName}&username={u.UserName}");
         }
 
         [StartWith("&ping", IsFullWord = true)]

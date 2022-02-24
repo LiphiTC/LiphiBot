@@ -25,9 +25,9 @@ namespace LiphiBot2
             .JoinChannels(new string[] {
                 "LiphiTC",
                 "Safrit22",
-                //"33kk",
+                "33kk",
                 //"RustKunXD",
-                //"pajlada",
+                "pajlada",
                 //"Toni__Stark_",
                 "ZakvielChannel"
             })
@@ -37,10 +37,7 @@ namespace LiphiBot2
             .UseAPIHelper(apiToken.ClientID, apiToken.Token)
             .BuildControllers()
             .Connect();
-            client.Bot.OnJoinedChannel += (object sender, OnJoinedChannelArgs args) => {
-                client.Bot.SendMessage(args.Channel, "YEP");
-            };
-
+            
             // client.Bot.OnUserJoined += (object sender, OnUserJoinedArgs args) =>
             // {
             //     args.Username = args.Username.ToLower();
