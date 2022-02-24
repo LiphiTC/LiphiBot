@@ -72,14 +72,40 @@ namespace LiphiBot2.Controllers
         [StartWith("!logs", IsFullWord = true)]
         public void Logs(User u)
         {
-            const string s = "👆👆🏻👆🏼👆🏽👆🏾👆🏿👇👇🏻👇🏼👇🏽👇🏾👇🏿👈👈🏻👈🏼👈🏽👈🏾👈🏿👉👉🏻👉🏼👉🏽👉🏾👉🏿";
+            List<string> s = new() {
+            "👆",
+            "👆🏻",
+            "👆🏼",
+            "👆🏽",
+            "👆🏾",
+            "👆🏿",
+            "👇",
+            "👇🏻",
+            "👇🏼",
+            "👇🏽",
+            "👇🏾",
+            "👇🏿",
+            "👈",
+            "👈🏻",
+            "👈🏼",
+            "👈🏽",
+            "👈🏾",
+            "👈🏿",
+            "👉",
+            "👉🏻",
+            "👉🏼",
+            "👉🏽",
+            "👉🏿",
+            "👉🏾"
+            };
             Random r = new Random();
+            
             if (u == null)
             {
-                SendAnswer("YEP " + s[r.Next(0, s.Length - 1)] + " https://justlog.kkx.one");
+                SendAnswer("YEP " + s[r.Next(0, s.Count - 1)] + " https://justlog.kkx.one");
                 return;
             }
-            SendAnswer($"YEP " + s[r.Next(0, s.Length - 1)] + " https://justlog.kkx.one/?channel={_api.Channel.Broadcaster.UserName}&username={u.UserName}");
+            SendAnswer($"YEP " + s[r.Next(0, s.Count - 1)] + " https://justlog.kkx.one/?channel={_api.Channel.Broadcaster.UserName}&username={u.UserName}");
         }
 
         [StartWith("&ping", IsFullWord = true)]
