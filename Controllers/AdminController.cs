@@ -54,7 +54,7 @@ namespace LiphiBot2.Controllers
 
                 if (result != null)
                 {
-                    SendAnswer(result.ToString());
+                    Send(result.ToString());
                 }
                 else
                 {
