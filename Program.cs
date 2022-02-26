@@ -8,12 +8,16 @@ using System.Collections.Generic;
 using LiphiBot2.Models;
 using TwitchLib.Client.Events;
 using System.Threading.Tasks;
+using System.Collections;
+using TwitchLib.Client.Models;
+using System.Collections.ObjectModel;
 
 namespace LiphiBot2
 {
     public class Program
     {
         public static List<TokenInfo> Tokens { get; private set; }
+        public static List<string> NewsRequests { get; set; }
         public static async Task Main(string[] args)
         {
             //FizzBuzz
@@ -38,7 +42,18 @@ namespace LiphiBot2
             .UseAPIHelper(apiToken.ClientID, apiToken.Token)
             .BuildControllers()
             .Connect();
-            
+
+
+
+            client.Bot.OnMessageReceived += (object sender, OnMessageReceivedArgs args) =>
+            {
+                if (args.ChatMessage.UserId == "68136884" && NewsRequests.Count != 0 && args.ChatMessage.Channel == "LiphiTC") {
+                    client.Bot.SendMessage(NewsRequests[0], args.ChatMessage.Message);
+                    NewsRequests.RemoveAt(0);
+                }
+            };
+
+
             // client.Bot.OnUserJoined += (object sender, OnUserJoinedArgs args) =>
             // {
             //     args.Username = args.Username.ToLower();
@@ -58,11 +73,12 @@ namespace LiphiBot2
             //         case "nikover":
             //             client.Bot.SendMessage(args.Channel, "⚠ ВНИМАНИЕ! В ЧАТ ЗАШЛЁЛ КОВРИК! ⚠");
             //             break;
-                    
+
 
             //     }
             // };
-            while(true) {
+            while (true)
+            {
                 await Task.Delay(100000);
             }
         }
