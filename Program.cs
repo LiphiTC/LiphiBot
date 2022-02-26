@@ -47,7 +47,7 @@ namespace LiphiBot2
 
             client.Bot.OnMessageReceived += (object sender, OnMessageReceivedArgs args) =>
             {
-                if (args.ChatMessage.UserId == "68136884" && NewsRequests.Count != 0 && args.ChatMessage.Channel == "LiphiTC") {
+                if (args.ChatMessage.UserId == "68136884" && NewsRequests.Count != 0 && args.ChatMessage.Channel == "liphitc") {
                     client.Bot.SendMessage(NewsRequests[0], args.ChatMessage.Message);
                     NewsRequests.RemoveAt(0);
                 }
