@@ -34,6 +34,7 @@ namespace LiphiBot2
                 //"RustKunXD",
                 "pajlada",
                 //"Toni__Stark_",
+                "Bekert",
                 "ZakvielChannel"
             })
             .UseLogger(new ConsoleLoggerLiphi())
