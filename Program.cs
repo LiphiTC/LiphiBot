@@ -17,7 +17,7 @@ namespace LiphiBot2
     public class Program
     {
         public static List<TokenInfo> Tokens { get; private set; }
-        public static List<string> NewsRequests { get; set; }
+        public static List<string> NewsRequests { get; set; } = new();
         public static async Task Main(string[] args)
         {
             //FizzBuzz
