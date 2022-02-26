@@ -17,7 +17,7 @@ namespace LiphiBot2.Controllers
 {
     [Channel("Bekert")]
     [Channel("33kk")]
-
+    [Channel("Safrit22")]
     public class pajaS : Controller
     {
 
