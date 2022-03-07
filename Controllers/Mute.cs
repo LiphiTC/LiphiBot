@@ -89,9 +89,6 @@ namespace MuteBot
                 Send("/timeout " + chaters[i].UserName + " 3m Щёлк");
             }
             return;
-
         }
-
-
     }
 }
