@@ -33,7 +33,7 @@ namespace LiphiBot2
                 "33kk",
                 //"RustKunXD",
                 "pajlada",
-                //"Toni__Stark_",
+                "sawer__",
                 "Bekert",
                 "ZakvielChannel"
             })
