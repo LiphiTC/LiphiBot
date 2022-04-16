@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using Twitcher;
 using TwitchLib.Api;
@@ -47,6 +48,7 @@ namespace LiphiBot2.Controllers
             {
                 var result = await CSharpScript.EvaluateAsync(expr,
                     ScriptOptions.Default
+                        .AddReferences(Assembly.GetExecutingAssembly())
                         .WithImports(new string[]
                         {
                             "System",
